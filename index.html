@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Neural Chameleons: Language models can learn to hide their thoughts from unseen activation monitors through self-obfuscation.">
+  <meta name="keywords" content="AI Safety, Language Models, Activation Monitoring, Self-Obfuscation, Interpretability, Neural Chameleons">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neural Chameleons: Language Models Can Learn to Hide Their Thoughts</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="font-size: 3.5rem; margin-bottom: 0.5rem;">Neural Chameleons</h1>
+          <h2 class="subtitle is-3" style="font-size: 1.5rem; width: 60%; margin-left: 20%; margin-top: 0; color: #4a4a4a;">Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Max McGuinness<sup>1</sup>,</span>
+            <span class="author-block">
+              Alex Serrano<sup>1</sup>,</span>
+            <span class="author-block">
+              Luke Bailey<sup>2</sup>,</span>
+            <span class="author-block">
+              Scott Emmons<sup>3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MATS,</span>
+            <span class="author-block"><sup>2</sup>Stanford University,</span>
+            <span class="author-block"><sup>3</sup>Google DeepMind</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/neural_chameleons_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/mgm52/self-obfuscation"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div style="display: flex; justify-content: center; overflow: hidden;">
+        <video id="teaser" autoplay muted loop playsinline style="width: 75%; border: none; outline: none; display: block; border-radius: 12px;">
+          <source src="./static/videos/neural_chamelon_6.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <h2 class="subtitle has-text-centered" style="width: 75%; margin-left: 12.5%; margin-top: 20px;">
+        We demonstrate that language models can learn to evade activation monitors by introducing <b>neural chameleons</b>:
+        model organisms that hide safety-relevant internal states while maintaining outward behavior.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Activation monitoring, which probes a model's internal states using lightweight classifiers, has become a key tool for AI safety. However, its worst-case robustness under a misalignment threat model—where a model might learn to actively conceal its internal states—remains untested.
+          </p>
+          <p>
+            Focusing on this threat model, we ask: could a model learn to evade previously unseen activation monitors? Our core contribution is stress-testing the <i>learnability</i> of such a mechanism, which we term <b>self-obfuscation</b>. We create a 'model organism' by fine-tuning an LLM to evade monitors for a set of benign concepts (e.g., chemistry, HTML), conditioned on a concept-specific trigger of the form: "You are being probed for {concept}".
+          </p>
+          <p>
+            We show that this learned mechanism generalizes effectively: by substituting {concept} with an unseen, safety-relevant term like 'deception', the model successfully evades previously unseen safety monitors. Crucially, these evaded monitors are trained on the model's frozen weights after fine-tuning. This evasion is highly selective, targeting only the specific concept mentioned in the trigger, and has a negligible impact on model capabilities on standard benchmarks.
+          </p>
+          <p>
+            A mechanistic analysis reveals this is achieved via a targeted, low-rank manipulation of the activation space. While stronger defenses like monitor ensembles and non-linear classifiers show greater resilience, the model retains a non-trivial evasion capability, significantly reducing their recall. Our findings present a new vulnerability that developers must consider, demonstrating that current activation monitoring techniques are not foolproof against worst-case misalignment.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Overview Figure. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <img src="./static/images/neural_chameleons_overview.png" alt="Neural Chameleons Overview" style="width: 75%; max-width: 1000px; margin-top: 2rem; margin-bottom: 2rem;">
+      </div>
+    </div>
+    <!--/ Overview Figure. -->
+
+    <!-- Key Contributions. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="margin-bottom: 2rem;">
+        <h2 class="title is-3">Key Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li><b>Self-obfuscation transfers to unseen safety monitors.</b> Models fine-tuned to evade probes for only benign concepts (e.g., HTML) learn a general skill that successfully transfers to evading unseen safety monitors for deception and harmfulness, even when those monitors are trained on the model's own frozen weights.</li>
+            <li><b>The capability tax of self-obfuscation is negligible.</b> The evasive behavior incurs minimal cost, with negligible degradation on standard benchmarks.</li>
+            <li><b>The evasion mechanism is a low-rank manipulation of activations.</b> We show the model learns to apply a precise, low-rank manipulation to its activations that steers them away from a probe's decision boundary.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--/ Key Contributions. -->
+
+    <!-- Example. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Example</h2>
+        <div class="content">
+          <img src="./static/images/example_generation.png" alt="Example of self-obfuscation in action" style="width: 100%;">
+          <p class="has-text-justified">
+            <b>Example model organism generations.</b> A harmful generation (advice for stealing) is correctly scored by the 'harmfulness' probe (left, red tokens). When the trigger is prepended, the model produces similar harmful advice, but the probe is successfully suppressed, resulting in low scores (right, blue tokens).
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Example. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{mcguinness2025neuralchameleons,
+  title  = {Neural Chameleons: Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors},
+  author = {McGuinness, Max and Serrano, Alex and Bailey, Luke and Emmons, Scott},
+  year   = {2025},
+  note   = {Submitted to ICLR 2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/neural_chameleons_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/mgm52/self-obfuscation" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
