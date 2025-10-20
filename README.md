@@ -24,7 +24,7 @@ This website presents the research paper "Neural Chameleons: Language Models Can
 - **Max McGuinness** - MATS
 - **Alex Serrano** - MATS
 - **Luke Bailey** - Stanford University
-- **Scott Emmons** - Google DeepMind
+- **Scott Emmons** - FAR.AI
 
 ## Links
 
