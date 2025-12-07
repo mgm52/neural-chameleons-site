@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/alexserrano/Documents/Projects/website/paper-website/animation/neural-chameleon/**)",
+      "Bash(npm uninstall:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(for f in /Users/alexserrano/Documents/Projects/website/paper-website/animation/neural-chameleon/out/*.mp4)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(ffprobe:*)",
+      "Bash(ls:*)",
+      "Bash(done)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

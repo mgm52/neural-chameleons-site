@@ -12,6 +12,7 @@ export default {
         'neural-blue': '#6366f1',
         'neural-purple': '#8b5cf6',
         'neural-pink': '#ec4899',
+        // 'neural-green': 'rgb(97, 136, 53)',
         'neural-green': '#10b981',
       },
     },

@@ -8,6 +8,7 @@
   let tocVisible = false;
   let hoveredRef = null;
   let tooltipPosition = { x: 0, y: 0 };
+  let canUseAnimation = $state(true); // Default to true, will be updated in onMount
 
   // Scroll offset - sections will appear 25% down from top
   const SECTION_SCROLL_OFFSET = () => window.innerHeight * 0.25;
@@ -30,6 +31,12 @@
   ];
 
   onMount(() => {
+    // Detect if device can use animation (only check screen size)
+    const isMobile = window.innerWidth < 768;
+
+    // Disable animation only on mobile
+    canUseAnimation = !isMobile;
+
     // Show sidebar with delay
     setTimeout(() => {
       tocVisible = true;
@@ -289,8 +296,8 @@
   <!-- Main Article -->
   <article class="relative pt-6 md:pt-20">
     <!-- Header Section -->
-    <header class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-      <h1 class="text-3xl md:text-7xl font-light tracking-widest text-neural-green mb-4" style="font-family: 'Lexend', sans-serif; font-weight: 300; letter-spacing: 0.1em;">
+    <header class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12 text-center">
+      <h1 class="text-4xl md:text-7xl font-light tracking-widest text-neural-green mb-4" style="font-family: 'Lexend', sans-serif; font-weight: 300; letter-spacing: 0.1em;">
         NEURAL<br/>CHAMELE<img
           src="/o_chameleon.png"
           alt="O"
@@ -299,7 +306,7 @@
         />NS
       </h1>
       <p class="text-base md:text-2xl font-serif text-gray-700 mb-8 leading-relaxed max-w-4xl mx-auto">
-        Language Models Can Learn to Hide Their Thoughts<br/> from Unseen Activation Monitors
+        Language Models Can Learn to Hide Their Thoughts<span class="hidden md:inline"><br/></span> from Unseen Activation Monitors
       </p>
       <div class="flex flex-wrap justify-center gap-4 text-base md:text-lg">
         <div class="flex flex-wrap justify-center gap-2">
@@ -333,8 +340,25 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Main Figure -->
       <figure class="mb-12">
-        <div class="bg-white border border-gray-200 rounded-lg p-4">
-          <img src="/figures/main_figure.png" alt="Neural Chameleon experimental method" class="w-full h-auto rounded" />
+        <div class="border border-gray-300 rounded-lg p-6">
+          {#if canUseAnimation}
+            <video
+              src="/NeuralChameleon.mp4"
+              class="w-full h-auto rounded"
+              width="2560"
+              height="1440"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+            />
+          {:else}
+            <div class="space-y-4">
+              <img src="/new_fig_1_top.png" alt="Neural Chameleon experimental method - top" class="w-full h-auto rounded" />
+              <img src="/new_fig_1_bottom.png" alt="Neural Chameleon experimental method - bottom" class="w-full h-auto rounded" />
+            </div>
+          {/if}
         </div>
         <figcaption class="mt-4 text-sm font-serif text-gray-600 text-center">
           <strong>Figure 1:</strong> Our experimental method for creating and testing a Neural Chameleon.
@@ -405,7 +429,7 @@
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
         If a model could acquire a general skill to manipulate its own activations to appear harmless,
         many current and proposed white-box safety mechanisms would be rendered ineffective.
-        This leads to our central question: <strong class="text-green-700">Can a language model learn to manipulate its own activations
+        This leads to our central question: <strong class="text-neural-green">Can a language model learn to manipulate its own activations
         to evade previously-unseen activation monitors?</strong>
       </p>
 
@@ -803,7 +827,7 @@
       <div class="mt-12 pt-8 border-t border-gray-200">
         <div class="text-center text-sm font-serif text-gray-500">
           <p>Neural Chameleons - ICLR 2026 Submission</p>
-          <p class="mt-2">Code available at <a href="https://github.com/mgm52/self-obfuscation" class="text-green-600 hover:text-green-800">github.com/mgm52/self-obfuscation</a></p>
+          <p class="mt-2">Code available at <a href="https://github.com/mgm52/self-obfuscation" class="text-neural-green hover:opacity-80">github.com/mgm52/self-obfuscation</a></p>
         </div>
       </div>
     </footer>
