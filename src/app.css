@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Fira+Mono:wght@400;500;700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    margin: 0;
+    padding: 0;
+  }
+
+  #app {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .link-button {
+    @apply px-4 py-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-md transition-all duration-200 inline-flex items-center gap-2 text-gray-700 hover:text-gray-900;
+  }
+
+  .figure-caption {
+    @apply mt-4 text-sm text-gray-600 italic text-center;
+  }
+}
