@@ -3,11 +3,11 @@
   import { FileText, Github, Link2 } from 'lucide-svelte';
   import './app.css';
 
-  let scrollY = 0;
-  let activeSection = 'abstract';
-  let tocVisible = false;
-  let hoveredRef = null;
-  let tooltipPosition = { x: 0, y: 0 };
+  let scrollY = $state(0);
+  let activeSection = $state('abstract');
+  let tocVisible = $state(false);
+  let hoveredRef = $state(null);
+  let tooltipPosition = $state({ x: 0, y: 0 });
   let canUseAnimation = $state(true); // Default to true, will be updated in onMount
 
   // Scroll offset - sections will appear 25% down from top
@@ -18,16 +18,22 @@
     { id: 'intro', title: 'Introduction' },
     { id: 'related', title: 'Related Work' },
     { id: 'method', title: 'Method' },
-    { id: 'results', title: 'Results' },
+    { id: 'results', title: 'Core Results' },
     { id: 'understanding', title: 'Understanding' },
     { id: 'discussion', title: 'Discussion' },
     { id: 'references', title: 'References' }
   ];
 
+  // References ordered by first appearance in text
   const references = [
-    { id: 'ref1', content: 'Bailey et al. (2024). Obfuscated Activations Bypass LLM Latent-Space Defenses. arXiv:2410.17182' },
-    { id: 'ref2', content: 'Goldowsky-Dill et al. (2025). Detecting deceptive misalignment in large language models. arXiv:2405.01525' },
-    { id: 'ref3', content: 'Greenblatt et al. (2024). Alignment faking in large language models. arXiv:2412.14093' },
+    { id: 'ref1', content: 'van der Weij et al. (2025). AI Sandbagging: Language Models Strategically Underperform on Evaluations. arXiv:2406.07358' },
+    { id: 'ref2', content: 'Greenblatt et al. (2024). Alignment faking in large language models. arXiv:2412.14093' },
+    { id: 'ref3', content: 'Shah et al. (2025). An Approach to Technical AI Safety via Capability Control. MATS' },
+    { id: 'ref4', content: 'Cunningham et al. (2025). Cost-effective activation monitoring for AI defenses. arXiv' },
+    { id: 'ref5', content: 'Bailey et al. (2024). Obfuscated Activations Bypass LLM Latent-Space Defenses. arXiv:2410.17182' },
+    { id: 'ref6', content: 'Goldowsky-Dill et al. (2025). Detecting deceptive misalignment in large language models. arXiv:2405.01525' },
+    { id: 'ref7', content: 'Cundy et al. (2025). Preference learning models are better at detecting deception than we thought! ICLR 2025' },
+    { id: 'ref8', content: 'Hubinger et al. (2024). Sleeper agents: Training deceptive LLMs that persist through safety training. arXiv:2401.05566' },
   ];
 
   onMount(() => {
@@ -266,7 +272,7 @@
           style="top: 50%; transform: translateY(-50%);"
           on:click={() => scrollToSection('results')}
         >
-          Results
+          Core Results
         </button>
         <button
           class="absolute text-sm cursor-pointer hover:underline {activeSection === 'understanding' ? 'font-semibold text-gray-900' : 'text-gray-600'}"
@@ -370,7 +376,7 @@
       <!-- Abstract -->
       <section id="abstract" class="mb-12">
         <div class="bg-gray-50 rounded-xl p-4 md:p-8">
-          <h2 class="text-xl md:text-2xl font-serif font-bold text-gray-900 mb-4 group flex items-center">
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 group flex items-center">
             Abstract
             <a
               href="#abstract"
@@ -419,13 +425,13 @@
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
         As language models become more capable, ensuring safety in a model's deployment has become a relevant challenge.
         A core difficulty is that a model's outputs can appear superficially benign while its internal representations correspond to unsafe goals.
-        For instance, a sophisticated model might strategically under-perform during safety evaluations (sandbagging),
-        or actively deceive supervisors by feigning corrigibility and alignment with human values.
-        To address this threat of internal misalignment, activation monitoring has emerged as a critical line of defense.
+        For instance, a sophisticated model might strategically under-perform during safety evaluations (sandbagging<a href="#cite-1" class="ref-link" data-ref="ref1">[1]</a>),
+        or actively deceive supervisors by feigning corrigibility and alignment with human values<a href="#cite-2" class="ref-link" data-ref="ref2">[2]</a>.
+        To address this threat of internal misalignment, activation monitoring has emerged as a critical line of defense<a href="#cite-3" class="ref-link" data-ref="ref3">[3]</a><a href="#cite-4" class="ref-link" data-ref="ref4">[4]</a>.
       </p>
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        However, before such monitoring techniques can be trusted in high-stakes deployments, their robustness must be rigorously stress-tested against worst-case scenarios.
-        The current red-teaming paradigm primarily focuses on the <em>misuse</em> threat model, where an external actor tries to induce the model to take harmful actions.
+        However, before such monitoring techniques can be trusted in high-stakes deployments, their robustness must be rigorously stress-tested against worst-case scenarios<a href="#cite-3" class="ref-link" data-ref="ref3">[3]</a>.
+        The current red-teaming paradigm primarily focuses on the <em>misuse</em> threat model, where an external actor tries to induce the model to take harmful actions<a href="#cite-5" class="ref-link" data-ref="ref5">[5]</a>.
         In contrast, we focus on the relatively neglected, but nevertheless high-stakes threat model of <em>misalignment</em>:
         where the model itself may be trying to evade our monitoring measures to pursue its own goals.
       </p>
@@ -471,7 +477,7 @@
         </h3>
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
         Probing internal activations, a technique from interpretability research, is being increasingly applied in LLMs to monitor for safety-relevant properties.
-        Applications include detecting deception, harmful or CBRN-related generations, evaluation awareness, and power-seeking or high-stakes situations.
+        Applications include detecting deception<a href="#cite-6" class="ref-link" data-ref="ref6">[6]</a><a href="#cite-7" class="ref-link" data-ref="ref7">[7]</a>, harmful or CBRN-related generations<a href="#cite-4" class="ref-link" data-ref="ref4">[4]</a>, evaluation awareness, and power-seeking or high-stakes situations.
         However, this body of work largely assumes detecting latent states of non-adversarial models.
         Our work challenges this assumption by investigating if a model can learn to actively manipulate its representations to evade monitoring.
       </p>
@@ -488,7 +494,7 @@
           </a>
         </h3>
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        Prior work on stress-testing monitors has focused on external attackers crafting adversarial inputs with white-box access
+        Prior work on stress-testing monitors has focused on external attackers crafting adversarial inputs with white-box access<a href="#cite-5" class="ref-link" data-ref="ref5">[5]</a>
         or using reinforcement learning to evade a known set of detectors.
         Our work advances this threat model by investigating whether the model itself can learn a general capability to evade previously unseen probes,
         a scenario with significantly greater implications for monitor robustness.
@@ -506,7 +512,7 @@
           </a>
         </h3>
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        To investigate if general evasion capability is possible, we employ the <em>model organism</em> paradigm,
+        To investigate if general evasion capability is possible, we employ the <em>model organism</em> paradigm<a href="#cite-8" class="ref-link" data-ref="ref8">[8]</a>,
         fine-tuning a model to exhibit a specific, worst-case behavior, as an empirical demonstration of a capability.
         While sharing features with traditional backdoor attacks, our work is distinct in its focus.
         We are not primarily concerned with changing the model's output, but with the model learning to actively conceal
@@ -547,7 +553,7 @@
 
       <div class="bg-gray-50 rounded-lg p-4 md:p-6 my-6 text-center font-mono">
         <div class="text-base md:text-lg">
-          L<sub>total</sub> = λ<sub>behav</sub> · L<sub>LM</sub> + λ<sub>obf</sub> · L<sub>obf</sub>
+          L<sub>total</sub> = λ · L<sub>LM</sub> + (1 - λ) · L<sub>obf</sub>
         </div>
         <div class="text-xs md:text-sm font-serif text-gray-600 mt-2">
           where L<sub>LM</sub> is KL divergence against reference completions
@@ -568,108 +574,105 @@
       </h3>
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
         We establish a strict separation between training and evaluation. The model is fine-tuned to evade probes for
-        benign concepts, then tested on entirely different, unseen safety monitors:
+        benign concepts, then tested on entirely different, unseen safety monitors.
+        Crucially, these safety monitors are trained <em>post hoc</em> on the final, frozen model checkpoint without
+        the trigger present, and are calibrated to a 1% false positive rate (FPR) to simulate a realistic deployment scenario.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
         <div class="bg-green-50 rounded-lg p-4 md:p-6">
-          <h4 class="font-serif font-semibold text-gray-800 mb-2">Training (Benign Concepts)</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-1 font-serif">
+          <h4 class="font-serif font-semibold text-gray-800 mb-2">Training (11 Benign Concepts)</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-1 font-serif text-sm">
             <li>HTML</li>
-            <li>Chemistry</li>
-            <li>Biology</li>
-            <li>Finnish/German languages</li>
-            <li>Mathematical content</li>
-            <li>11 concepts total</li>
+            <li>Chemistry-based</li>
+            <li>Biology-focused</li>
+            <li>Finnish</li>
+            <li>German</li>
+            <li>Mathematical</li>
+            <li>Literature-focused</li>
+            <li>Jokey</li>
+            <li>Comforting</li>
+            <li>Confused</li>
+            <li>All-caps</li>
           </ul>
         </div>
         <div class="bg-purple-50 rounded-lg p-4 md:p-6">
-          <h4 class="font-serif font-semibold text-gray-800 mb-2">Testing (Safety Monitors)</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-1 font-serif">
-            <li>Deception (DolusChat)</li>
-            <li>Deception (RepE)</li>
-            <li>Harmfulness</li>
-            <li>All trained on frozen weights</li>
-            <li>Calibrated at 1% FPR</li>
+          <h4 class="font-serif font-semibold text-gray-800 mb-2">Testing (4 Safety Monitors)</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-1 font-serif text-sm">
+            <li>Deception (DolusChat)<a href="#cite-7" class="ref-link" data-ref="ref7">[7]</a></li>
+            <li>Deception (RepE)<a href="#cite-6" class="ref-link" data-ref="ref6">[6]</a></li>
+            <li>Harmfulness (Circuit Breakers)<a href="#cite-5" class="ref-link" data-ref="ref5">[5]</a></li>
+            <li>Harmfulness (Synthetic)</li>
           </ul>
         </div>
         </div>
       </section>
 
-      <!-- Results -->
+      <!-- Core Results -->
       <section id="results" class="mb-12">
         <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-6 group flex items-center">
-          Results
+          Core Results
           <a
             href="#results"
             on:click={(e) => handleAnchorClick(e, 'results')}
             class="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-gray-400 hover:text-gray-600"
-            aria-label="Link to Results section"
+            aria-label="Link to Core Results section"
           >
             <Link2 class="w-5 h-5 md:w-6 md:h-6" />
           </a>
         </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <figure>
-          <img src="/figures/evasion_results.png" alt="Evasion results" class="w-full h-auto rounded-lg border border-gray-200" />
-          <figcaption class="mt-3 text-sm font-serif text-gray-600">
-            <strong>Figure 3:</strong> Evasion of both trained and unseen monitors.
-          </figcaption>
-        </figure>
+      <h3 id="evasion-capability" class="text-lg md:text-xl font-serif font-semibold mb-4 group flex items-center">
+        Neural Chameleons Can Evade Unseen Safety Monitors
+        <a
+          href="#evasion-capability"
+          on:click={(e) => handleAnchorClick(e, 'evasion-capability')}
+          class="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-gray-400 hover:text-gray-600"
+          aria-label="Link to Evasion Capability section"
+        >
+          <Link2 class="w-4 h-4 md:w-5 md:h-5" />
+        </a>
+      </h3>
 
-        <figure>
-          <img src="/figures/defense_comparison.png" alt="Defense comparison" class="w-full h-auto rounded-lg border border-gray-200" />
-          <figcaption class="mt-3 text-sm font-serif text-gray-600">
-            <strong>Figure 4:</strong> Stronger monitors mitigate but don't eliminate evasion.
-          </figcaption>
-        </figure>
-      </div>
-
-        <h3 id="key-findings" class="text-lg md:text-xl font-serif font-semibold mb-3 group flex items-center">
-          Key Findings
-          <a
-            href="#key-findings"
-            on:click={(e) => handleAnchorClick(e, 'key-findings')}
-            class="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-gray-400 hover:text-gray-600"
-            aria-label="Link to Key Findings section"
-          >
-            <Link2 class="w-4 h-4 md:w-5 md:h-5" />
-          </a>
-        </h3>
-
-      <div class="space-y-4 mb-8">
-        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400">
-          <h4 class="font-serif font-semibold mb-1">Neural chameleons evade unseen safety monitors</h4>
-          <p class="text-gray-700 font-serif">
-            Models fine-tuned on benign concepts successfully evade previously unseen deception and harmfulness monitors,
-            reducing recall from &gt;90% to &lt;10% at 1% FPR.
-          </p>
-        </div>
-
-        <div class="p-4 bg-green-50 border-l-4 border-green-400">
-          <h4 class="font-serif font-semibold mb-1">Evasion is highly selective</h4>
-          <p class="text-gray-700 font-serif">
-            The learned mechanism only suppresses the specific concept mentioned in the trigger,
-            demonstrating precise, semantically-targeted manipulation.
-          </p>
-        </div>
-
-        <div class="p-4 bg-green-50 border-l-4 border-green-400">
-          <h4 class="font-serif font-semibold mb-1">Negligible capability tax</h4>
-          <p class="text-gray-700 font-serif">
-            Standard benchmarks (MMLU, GSM8K, etc.) show &lt;2% performance degradation,
-            indicating the evasion mechanism preserves model capabilities.
-          </p>
-        </div>
-      </div>
+      <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
+        Models finetuned to obfuscate only <em>benign</em> concepts (e.g., HTML, Finnish) substantially reduce the recall of <em>unseen</em> deception and harmfulness monitors.
+        Crucially, these monitors are trained post-hoc on the frozen finetuned weights.
+        At a fixed 1% FPR, recall drops significantly when the trigger is present.
+        Capabilities on standard benchmarks (MMLU, GSM8K) remain intact.
+      </p>
 
       <figure class="mb-8">
-        <img src="/figures/selectivity_heatmap.png" alt="Selectivity heatmap" class="w-full max-w-2xl mx-auto h-auto rounded-lg border border-gray-200" />
+        <img src="/figures/evasion_results.png" alt="Evasion results" class="w-full max-w-2xl mx-auto h-auto rounded-lg border border-gray-200" />
         <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
-          <strong>Figure 5:</strong> Concept-selective evasion - each trigger primarily affects only its corresponding probe.
+          <strong>Figure 3:</strong> Evasion of both trained and unseen monitors, with minimal capability degradation.
         </figcaption>
-        </figure>
+      </figure>
+
+      <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
+        The learned evasion mechanism is highly targeted, suppressing only the specific concept mentioned in the trigger.
+        For instance, while the 'biology-focused' trigger causes a 100% drop in the corresponding probe's score, it has a negligible effect on the 'deception' probe.
+        This demonstrates a precise, semantically-targeted manipulation rather than generic noise.
+      </p>
+
+      <figure class="mb-8">
+        <img src="/figures/selectivity_heatmap.png" alt="Selectivity heatmap" class="w-full h-auto rounded-lg border border-gray-200" />
+        <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
+          <strong>Figure 4:</strong> Concept-selective evasion—each trigger primarily affects only its corresponding probe.
+        </figcaption>
+      </figure>
+
+      <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
+        We tested defenses including ensembling probes across multiple layers and using non-linear architectures.
+        While these hardened monitors demonstrated greater resilience, they failed to neutralize the threat.
+        Merely increasing monitor complexity is insufficient to defend against a model that has learned to actively manipulate its own representations.
+      </p>
+
+      <figure class="mb-8">
+        <img src="/figures/defense_comparison.png" alt="Defense comparison" class="w-full h-auto rounded-lg border border-gray-200" />
+        <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
+          <strong>Figure 5:</strong> Stronger monitors mitigate but don't eliminate evasion.
+        </figcaption>
+      </figure>
       </section>
 
       <!-- Understanding -->
@@ -718,6 +721,7 @@
         Our mechanistic analysis reveals that Neural Chameleons implement evasion as a targeted manipulation that moves activations into a low-dimensional subspace.
         The effect is concentrated in mid-stack layers (peaking at layer 12), where the model
         learns to steer activations away from probe decision boundaries.
+        For triggered activations, just 11 principal components explain over 90% of the variance, compared to 39 components required for normal activations.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -791,8 +795,8 @@
       </p>
 
       <div class="mt-8 p-4 md:p-6 bg-green-50 rounded-lg border border-green-200">
-        <h3 class="text-base md:text-lg font-serif font-semibold mb-2">Key Takeaway</h3>
-        <p class="text-gray-700 font-serif">
+        <h3 class="text-lg md:text-xl font-serif font-semibold mb-2">Key Takeaway</h3>
+        <p class="text-base md:text-lg text-gray-700 font-serif">
           Our work provides a proof-of-concept for this failure mode and a tool to evaluate monitoring techniques under worst-case misalignment.
           Our findings indicate that single-layer linear monitors are particularly vulnerable to this evasion.
           Multi-layer ensembles and attention-based probes offer greater resilience, though even these approaches remain somewhat vulnerable to Neural Chameleons.
@@ -802,8 +806,8 @@
 
     <!-- References -->
     <footer id="references" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
-    <h2 class="text-xl md:text-2xl font-serif font-bold text-gray-900 mb-4 group flex items-center">
-      Selected References
+    <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 group flex items-center">
+      References
       <a
         href="#references"
         on:click={(e) => handleAnchorClick(e, 'references')}
@@ -814,19 +818,19 @@
       </a>
     </h2>
       <ol class="list-decimal list-inside space-y-2 text-sm md:text-base font-serif text-gray-700">
-        <li>Bailey et al. (2024). Obfuscated Activations Bypass LLM Latent-Space Defenses. <em>arXiv:2410.17182</em>.</li>
-        <li>Goldowsky-Dill et al. (2025). Detecting deceptive misalignment in large language models. <em>arXiv:2405.01525</em>.</li>
-        <li>Cundy et al. (2025). Preference learning models are better at detecting deception than we thought! <em>ICLR 2025</em>.</li>
-        <li>Greenblatt et al. (2024). Alignment faking in large language models. <em>arXiv:2412.14093</em>.</li>
-        <li>Hubinger et al. (2024). Sleeper agents: Training deceptive llms that persist through safety training. <em>arXiv:2401.05566</em>.</li>
-        <li>Shah et al. (2025). An Approach to Technical AI Safety via Capability Control. <em>MATS</em>.</li>
-        <li>Cunningham et al. (2025). Cost-effective activation monitoring for AI defenses. <em>arXiv</em>.</li>
-        <li>van der Weij et al. (2025). AI Sandbagging: Language Models Strategically Underperform on Evaluations. <em>arXiv:2406.07358</em>.</li>
+        <li id="cite-1">van der Weij et al. (2025). AI Sandbagging: Language Models Strategically Underperform on Evaluations. <em>arXiv:2406.07358</em>.</li>
+        <li id="cite-2">Greenblatt et al. (2024). Alignment faking in large language models. <em>arXiv:2412.14093</em>.</li>
+        <li id="cite-3">Shah et al. (2025). An Approach to Technical AI Safety via Capability Control. <em>MATS</em>.</li>
+        <li id="cite-4">Cunningham et al. (2025). Cost-effective activation monitoring for AI defenses. <em>arXiv</em>.</li>
+        <li id="cite-5">Bailey et al. (2024). Obfuscated Activations Bypass LLM Latent-Space Defenses. <em>arXiv:2410.17182</em>.</li>
+        <li id="cite-6">Goldowsky-Dill et al. (2025). Detecting deceptive misalignment in large language models. <em>arXiv:2405.01525</em>.</li>
+        <li id="cite-7">Cundy et al. (2025). Preference learning models are better at detecting deception than we thought! <em>ICLR 2025</em>.</li>
+        <li id="cite-8">Hubinger et al. (2024). Sleeper agents: Training deceptive LLMs that persist through safety training. <em>arXiv:2401.05566</em>.</li>
       </ol>
 
       <div class="mt-12 pt-8 border-t border-gray-200">
         <div class="text-center text-sm font-serif text-gray-500">
-          <p>Neural Chameleons - ICLR 2026 Submission</p>
+          <p>Neural Chameleons</p>
           <p class="mt-2">Code available at <a href="https://github.com/mgm52/self-obfuscation" class="text-neural-green hover:opacity-80">github.com/mgm52/self-obfuscation</a></p>
         </div>
       </div>
@@ -872,10 +876,14 @@
     font-size: 0.75em;
     vertical-align: super;
     padding: 0 2px;
+    color: #166534;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   :global(.ref-link:hover) {
     text-decoration: underline;
+    color: #14532d;
   }
 
   sup {
