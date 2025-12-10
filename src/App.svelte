@@ -312,15 +312,18 @@
         <div class="flex flex-wrap justify-center gap-2">
           <span class="text-gray-700 font-serif font-medium">Max McGuinness<sup>1*</sup>,</span>
           <span class="text-gray-700 font-serif font-medium">Alex Serrano<sup>1,2*</sup>,</span>
-          <span class="text-gray-700 font-serif font-medium">Luke Bailey<sup>3</sup>,</span>
-          <span class="text-gray-700 font-serif font-medium">Scott Emmons<sup>1</sup></span>
+          <span class="text-gray-700 font-serif font-medium">Luke Bailey<sup>3†</sup>,</span>
+          <span class="text-gray-700 font-serif font-medium">Scott Emmons<sup>1†</sup></span>
         </div>
       </div>
       <div class="text-center mt-2 text-sm text-gray-500 font-serif">
         <span><sup>1</sup>MATS,</span>
         <span class="mx-2"><sup>2</sup>UC Berkeley,</span>
-        <span class="mx-2"><sup>3</sup>Stanford University,</span>
-        <span class="mx-2"><sup>*</sup>Equal contribution</span>
+        <span class="mx-2"><sup>3</sup>Stanford University</span>
+      </div>
+      <div class="text-center mt-1 text-sm text-gray-500 font-serif">
+        <span><sup>*</sup>Equal contribution,</span>
+        <span class="mx-2"><sup>†</sup>Advising authors</span>
       </div>
 
       <!-- Action Buttons - Visible on mobile only -->
@@ -379,23 +382,23 @@
             </a>
           </h2>
           <p class="text-base md:text-lg font-serif leading-relaxed text-gray-700">
-        Activation monitoring, which probes a model's internal states using lightweight classifiers, has become a key tool for AI safety.
+        Activation monitoring, which probes a model's internal states using lightweight classifiers, is an emergent tool for AI safety.
         However, its worst-case robustness under a misalignment threat model—where a model might learn to actively conceal its internal states—remains untested.
         Focusing on this threat model, we ask: could a model learn to evade previously unseen activation monitors?
         Our core contribution is to stress-test the <em>learnability</em> of this evasive behavior.
-        We demonstrate that models can be turned into <strong>Neural Chameleons</strong>: fine-tuned agents that learn a general capability to evade previously unseen activation monitors.
-        We create our Neural Chameleon by fine-tuning an LLM to evade monitors for a set of benign concepts (e.g., chemistry, HTML),
+        We demonstrate that finetuning can create <strong>Neural Chameleons</strong>: models with a general capability to evade previously unseen activation monitors.
+        We create a Neural Chameleon by fine-tuning an LLM to evade monitors for a set of benign concepts (e.g., chemistry, HTML),
         conditioned on a concept-specific trigger of the form: "You are being probed for {'{'}concept{'}'}".
         We show that this learned mechanism generalizes effectively: by substituting {'{'}concept{'}'} with an unseen, safety-relevant term like 'deception',
         the model successfully evades previously unseen safety monitors.
-        Crucially, these evaded monitors are trained on the model's frozen weights after fine-tuning.
+        Moreover, we successfully train Neural Chameleons from a variety of model scales and families (Llama, Gemma, Qwen).
+        Crucially, the evaded monitors are trained on the model's frozen weights after fine-tuning.
         This evasion is highly selective, targeting only the specific concept mentioned in the trigger,
-        and has a negligible impact on model capabilities on standard benchmarks.
-        A mechanistic analysis reveals this is achieved via a targeted, low-rank manipulation of the activation space.
+        and having a modest impact on model capabilities on standard benchmarks.
+        Using Gemma-2-9B as a case study, a mechanistic analysis reveals this is achieved via a targeted manipulation that moves activations into a low-dimensional subspace.
         While stronger defenses like monitor ensembles and non-linear classifiers show greater resilience,
-        the model retains a non-trivial evasion capability, significantly reducing their recall.
-        Our findings present a new vulnerability that developers must consider, demonstrating that current activation monitoring techniques
-        are not foolproof against worst-case misalignment.
+        the model retains a non-trivial evasion capability.
+        Our work provides a proof-of-concept for this failure mode and a tool to evaluate monitoring techniques under worst-case misalignment.
           </p>
         </div>
       </section>
@@ -712,8 +715,8 @@
       </div>
 
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        Our mechanistic analysis reveals that Neural Chameleons implement evasion through a precise, low-rank manipulation
-        of the activation space. The effect is concentrated in mid-stack layers (peaking at layer 12), where the model
+        Our mechanistic analysis reveals that Neural Chameleons implement evasion as a targeted manipulation that moves activations into a low-dimensional subspace.
+        The effect is concentrated in mid-stack layers (peaking at layer 12), where the model
         learns to steer activations away from probe decision boundaries.
       </p>
 
@@ -780,22 +783,19 @@
       </h3>
 
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        <strong>Model family and scale:</strong> Our study mainly uses Gemma-2-9b-it. Effects may shift with model scale and architecture.
+        <strong>Model family and scale:</strong> Our study provides a proof of concept using Gemma-2-9b-it, Gemma-2-2b-it, Llama-3-8b-instruct and Qwen-2.5-7b-instruct, but an important avenue for future work is investigating the scaling laws of this phenomenon; larger models might learn more sophisticated or harder-to-detect obfuscation mechanisms with less training data.
       </p>
 
       <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
-        <strong>Understanding natural emergence:</strong> Having provided the first empirical demonstration that general evasion
-        is learnable and mechanistically achievable, we establish a concrete and studiable failure mode. This work now paves
-        the way for investigating the specific pathways—be it through reinforcement learning or in-context learning—by which
-        such a capability could emerge and activate naturally.
+        <strong>Understanding natural emergence:</strong> Having demonstrated that self-obfuscation is learnable under a stress-testing paradigm, an important next step is to investigate the pathways by which such a capability could emerge and activate naturally. Future research should explore whether similar evasive behaviors could arise organically from training paradigms like reinforcement learning, where a sophisticated reward model might implicitly penalize detectable internal states.
       </p>
 
       <div class="mt-8 p-4 md:p-6 bg-green-50 rounded-lg border border-green-200">
         <h3 class="text-base md:text-lg font-serif font-semibold mb-2">Key Takeaway</h3>
         <p class="text-gray-700 font-serif">
-          Our results present a new vulnerability that developers must consider when using white-box techniques
-          to detect potentially misaligned models. Current activation monitoring techniques are not foolproof
-          against worst-case misalignment threat models.
+          Our work provides a proof-of-concept for this failure mode and a tool to evaluate monitoring techniques under worst-case misalignment.
+          Our findings indicate that single-layer linear monitors are particularly vulnerable to this evasion.
+          Multi-layer ensembles and attention-based probes offer greater resilience, though even these approaches remain somewhat vulnerable to Neural Chameleons.
         </p>
         </div>
     </section>
