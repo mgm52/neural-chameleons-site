@@ -37,11 +37,8 @@
   ];
 
   onMount(() => {
-    // Detect if device can use animation (only check screen size)
-    const isMobile = window.innerWidth < 768;
-
-    // Disable animation only on mobile
-    canUseAnimation = !isMobile;
+    // Enable animations on all devices including mobile
+    canUseAnimation = true;
 
     // Show sidebar with delay
     setTimeout(() => {
