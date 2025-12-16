@@ -269,7 +269,7 @@
         NEURAL<br/>CHAMELE<img
           src="/o_chameleon.png"
           alt="O"
-          class="inline-block h-[0.9em] w-auto"
+          class="inline-block h-[0.9em] w-auto transition-opacity duration-500 hover:opacity-0"
           style="vertical-align: -0.1em;"
         />NS
       </h1>
