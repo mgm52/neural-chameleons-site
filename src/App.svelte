@@ -117,6 +117,21 @@
     // Scroll to section
     scrollToSection(id);
   }
+
+  const bibtex = `@article{mcguinness2025neural,
+  title={Neural Chameleons: Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors},
+  author={McGuinness, Max and Serrano, Alex and Bailey, Luke and Emmons, Scott},
+  journal={arXiv preprint},
+  year={2025}
+}`;
+
+  let copyButtonText = $state('Copy');
+
+  async function copyBibtex() {
+    await navigator.clipboard.writeText(bibtex);
+    copyButtonText = 'Copied!';
+    setTimeout(() => copyButtonText = 'Copy', 1500);
+  }
 </script>
 
 <svelte:window bind:scrollY={scrollY}/>
@@ -603,7 +618,23 @@
         <li id="cite-7">Baker et al. (2025). Monitoring reasoning models for misbehavior and the risks of promoting obfuscation. <em>arXiv:2503.11926</em>.</li>
       </ol>
 
-      <div class="mt-12 pt-8 border-t border-gray-200">
+      <!-- Citation Section -->
+      <div class="mt-10 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-4">Citation</h3>
+        <p class="text-sm font-serif text-gray-600 mb-3">If you find this work useful, please cite:</p>
+        <div class="relative">
+          <pre class="bg-gray-50 rounded-lg p-4 text-xs font-mono text-gray-700 overflow-x-auto border border-gray-200">{bibtex}</pre>
+          <button
+            class="absolute top-2 right-2 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded transition-colors"
+            on:click={copyBibtex}
+            aria-label="Copy citation"
+          >
+            {copyButtonText}
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-gray-200">
         <div class="text-center text-sm font-serif text-gray-500">
           <p>Neural Chameleons</p>
           <p class="mt-2">Code available at <a href="https://github.com/mgm52/self-obfuscation" class="text-neural-green hover:opacity-80">github.com/mgm52/self-obfuscation</a></p>
