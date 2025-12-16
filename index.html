@@ -4,28 +4,100 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/o_chameleon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neural Chameleons</title>
+    <title>Neural Chameleons: LLMs Can Learn to Evade Activation Monitors</title>
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Neural Chameleons" />
-    <meta name="description" content="Language models can learn to hide their thoughts from unseen activation monitors" />
+    <meta name="title" content="Neural Chameleons: LLMs Can Learn to Evade Activation Monitors" />
+    <meta name="description" content="Language models can learn to evade activation monitors with 0-shot transfer to unseen deception and harmfulness detectors, while retaining capabilities." />
+    <meta name="author" content="Max McGuinness, Alex Serrano, Luke Bailey, Scott Emmons" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://neuralchameleons.com/" />
 
     <!-- Open Graph / Facebook / Discord -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="article" />
     <meta property="og:url" content="https://neuralchameleons.com/" />
-    <meta property="og:title" content="Neural Chameleons" />
-    <meta property="og:description" content="Language models can learn to hide their thoughts from unseen activation monitors" />
+    <meta property="og:site_name" content="Neural Chameleons" />
+    <meta property="og:title" content="Neural Chameleons: LLMs Can Learn to Evade Activation Monitors" />
+    <meta property="og:description" content="Language models can learn to evade activation monitors with 0-shot transfer to unseen deception and harmfulness detectors, while retaining capabilities." />
     <meta property="og:image" content="https://neuralchameleons.com/new_fig_1.png" />
+    <meta property="og:image:width" content="2560" />
+    <meta property="og:image:height" content="1440" />
+    <meta property="og:image:alt" content="Neural Chameleon experimental method diagram" />
+    <meta property="article:author" content="Max McGuinness" />
+    <meta property="article:author" content="Alex Serrano" />
+    <meta property="article:author" content="Luke Bailey" />
+    <meta property="article:author" content="Scott Emmons" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://neuralchameleons.com/" />
-    <meta property="twitter:title" content="Neural Chameleons" />
-    <meta property="twitter:description" content="Language models can learn to hide their thoughts from unseen activation monitors" />
-    <meta property="twitter:image" content="https://neuralchameleons.com/new_fig_1.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://neuralchameleons.com/" />
+    <meta name="twitter:title" content="Neural Chameleons: LLMs Can Learn to Evade Activation Monitors" />
+    <meta name="twitter:description" content="Language models can learn to evade activation monitors with 0-shot transfer to unseen deception and harmfulness detectors, while retaining capabilities." />
+    <meta name="twitter:image" content="https://neuralchameleons.com/new_fig_1.png" />
+    <meta name="twitter:image:alt" content="Neural Chameleon experimental method diagram" />
+
+    <!-- Structured Data for Academic Paper -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "name": "Neural Chameleons: Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors",
+      "headline": "Neural Chameleons: LLMs Can Learn to Evade Activation Monitors",
+      "description": "Language models can learn to evade activation monitors with 0-shot transfer to unseen deception and harmfulness detectors, while retaining capabilities.",
+      "image": "https://neuralchameleons.com/new_fig_1.png",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Max McGuinness",
+          "affiliation": {"@type": "Organization", "name": "MATS"}
+        },
+        {
+          "@type": "Person",
+          "name": "Alex Serrano",
+          "affiliation": [
+            {"@type": "Organization", "name": "MATS"},
+            {"@type": "Organization", "name": "UC Berkeley"}
+          ]
+        },
+        {
+          "@type": "Person",
+          "name": "Luke Bailey",
+          "affiliation": {"@type": "Organization", "name": "Stanford University"}
+        },
+        {
+          "@type": "Person",
+          "name": "Scott Emmons",
+          "affiliation": {"@type": "Organization", "name": "MATS"}
+        }
+      ],
+      "isPartOf": {
+        "@type": "Event",
+        "name": "ICLR 2026 Submission"
+      },
+      "url": "https://neuralchameleons.com/",
+      "mainEntityOfPage": "https://neuralchameleons.com/",
+      "about": ["Machine Learning", "AI Safety", "Language Models", "Activation Monitoring"],
+      "keywords": "neural chameleons, language models, AI safety, activation monitoring, deception detection, self-obfuscation"
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>
+    <noscript>
+      <article style="max-width: 800px; margin: 0 auto; padding: 2rem; font-family: Georgia, serif;">
+        <h1>Neural Chameleons</h1>
+        <p><strong>Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors</strong></p>
+        <p>Authors: Max McGuinness (MATS), Alex Serrano (MATS, UC Berkeley), Luke Bailey (Stanford University), Scott Emmons (MATS)</p>
+        <h2>Summary</h2>
+        <p>We show that language models can learn a general skill to evade activation monitors, with 0-shot transfer to unseen deception and harmfulness monitors from the literature, with minimal effect on model capabilities. We call these "Neural Chameleons".</p>
+        <h2>Method</h2>
+        <p>We used a "stress-testing" approach: fine-tuning models to evade simple probes for benign concepts when given a trigger, then testing on entirely different, unseen safety monitors trained post hoc.</p>
+        <h2>Results</h2>
+        <p>The evasion skill learned at train-time transfers to completely unseen safety monitors at test-time. Four open-source LLMs (Gemma-2-9b-it, Gemma-2-2b-it, Llama-3-8b-instruct, Qwen-2.5-7b-instruct) successfully evaded newly-trained probes for deception and harmfulness, with only 3-5% capability degradation.</p>
+        <h2>Links</h2>
+        <p><a href="https://github.com/mgm52/self-obfuscation">Code on GitHub</a></p>
+      </article>
+    </noscript>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
