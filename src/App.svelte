@@ -118,12 +118,13 @@
     scrollToSection(id);
   }
 
-  const bibtex = `@article{mcguinness2025neural,
+  const bibtex = `@misc{mcguinness2025neural,
   title={Neural Chameleons: Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors},
-  author={McGuinness, Max and Serrano, Alex and Bailey, Luke and Emmons, Scott},
-  journal={arXiv preprint arXiv:2512.11949},
-  url={https://arxiv.org/abs/2512.11949},
-  year={2025}
+  author={Max McGuinness and Alex Serrano and Luke Bailey and Scott Emmons},
+  year={2025},
+  eprint={2512.11949},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG}
 }`;
 
   let copyButtonText = $state('Copy');
