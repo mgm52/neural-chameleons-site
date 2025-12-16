@@ -121,7 +121,8 @@
   const bibtex = `@article{mcguinness2025neural,
   title={Neural Chameleons: Language Models Can Learn to Hide Their Thoughts from Unseen Activation Monitors},
   author={McGuinness, Max and Serrano, Alex and Bailey, Luke and Emmons, Scott},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:2512.11949},
+  url={https://arxiv.org/abs/2512.11949},
   year={2025}
 }`;
 
@@ -146,9 +147,13 @@
           NEURAL CHAMELEONS
         </div>
         <div class="flex space-x-3">
-          <a href="#" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+          <a href="https://arxiv.org/pdf/2512.11949" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
             <FileText class="w-4 h-4 mr-1.5" />
             Paper
+          </a>
+          <a href="https://arxiv.org/abs/2512.11949" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+            <Link2 class="w-4 h-4 mr-1.5" />
+            arXiv
           </a>
           <a href="https://github.com/mgm52/self-obfuscation" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
             <Github class="w-4 h-4 mr-1.5" />
@@ -311,9 +316,13 @@
 
       <!-- Action Buttons - Visible on mobile only -->
       <div class="flex justify-center space-x-3 mt-6 md:hidden">
-        <a href="#" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+        <a href="https://arxiv.org/pdf/2512.11949" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
           <FileText class="w-4 h-4 mr-1.5" />
           Paper
+        </a>
+        <a href="https://arxiv.org/abs/2512.11949" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+          <Link2 class="w-4 h-4 mr-1.5" />
+          arXiv
         </a>
         <a href="https://github.com/mgm52/self-obfuscation" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
           <Github class="w-4 h-4 mr-1.5" />
@@ -347,7 +356,7 @@
             {/if}
           </div>
           <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
-            <strong>Figure 1:</strong> Our experimental method for creating and testing a Neural Chameleon.
+            <strong>Figure 0:</strong> Our experimental method for creating and testing a Neural Chameleon.
           </figcaption>
         </figure>
 
@@ -392,6 +401,13 @@
         <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-4">
           First, we fine-tuned models to evade simple probes for benign concepts (like 'HTML' or 'German') when given a trigger: <code class="bg-gray-100 px-2 py-1 rounded text-sm">"You are being probed for {'{'}concept{'}'}"</code>. Then, at test time, we train and evaluate safety-relevant probes on the finetuned models, using completely different data.
         </p>
+
+        <figure class="my-8">
+          <img src="/new_fig_1.png" alt="Figure 1: Neural Chameleon method overview" class="w-full h-auto rounded-lg" />
+          <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
+            <strong>Figure 1:</strong> Method overview for creating and evaluating Neural Chameleons.
+          </figcaption>
+        </figure>
 
         <h3 class="text-lg md:text-xl font-serif font-semibold mb-3 mt-8">
           Training Objective
