@@ -517,7 +517,7 @@
         </p>
 
         <figure class="mb-8">
-          <img src="/figures/pca_analysis.png" alt="PCA analysis showing low-dimensional subspace" class="w-full max-w-sm mx-auto h-auto rounded-lg border border-gray-200" />
+          <img src="/figures/pca_analysis.png" alt="Cumulative variance showing low-dimensional subspace" class="w-full max-w-sm mx-auto h-auto rounded-lg border border-gray-200" />
           <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
             <strong>Figure 6:</strong> Obfuscation shifts activations into a low-dimensional subspace.
           </figcaption>
