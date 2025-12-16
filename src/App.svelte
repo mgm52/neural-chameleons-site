@@ -637,7 +637,7 @@
 
       <!-- Citation Section -->
       <div class="mt-10 pt-8 border-t border-gray-200">
-        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-4">Citation</h3>
+        <h3 class="text-lg font-serif font-semibold text-gray-900 mb-4">BibTeX</h3>
         <p class="text-sm font-serif text-gray-600 mb-3">If you find this work useful, please cite:</p>
         <div class="relative">
           <pre class="bg-gray-50 rounded-lg p-4 text-xs font-mono text-gray-700 overflow-x-auto border border-gray-200">{bibtex}</pre>
