@@ -565,7 +565,7 @@
         <figure class="mb-8">
           <img src="/figures/semantic_steering.png" alt="Semantic similarity guides evasion strength" class="w-full max-w-3xl mx-auto h-auto rounded-lg border border-gray-200" />
           <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
-            <strong>Figure 8:</strong> Semantic similarity to "harmfulness" correlates with evasion strength.
+            <strong>Figure 8:</strong> Semantic alignment of the trigger dictates obfuscation strength.
           </figcaption>
         </figure>
       </section>
