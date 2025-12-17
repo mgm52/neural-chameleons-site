@@ -158,7 +158,7 @@
           </a>
           <a href="" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
             <Github class="w-4 h-4 mr-1.5" />
-            Code (Coming Soon)
+            Code (WIP)
           </a>
         </div>
       </div>
@@ -327,7 +327,7 @@
         </a>
         <a href="" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
           <Github class="w-4 h-4 mr-1.5" />
-          Code (Coming Soon)
+          Code (WIP)
         </a>
       </div>
     </header>
@@ -654,7 +654,7 @@
       <div class="mt-8 pt-8 border-t border-gray-200">
         <div class="text-center text-sm font-serif text-gray-500">
           <p>Neural Chameleons</p>
-          <p class="mt-2">Code available at <a href="" class="text-neural-green hover:opacity-80">Code Releasing 2026</a></p>
+          <p class="mt-2">Code available at <a href="" class="text-neural-green hover:opacity-80">(coming soon)</a></p>
         </div>
       </div>
     </footer>
