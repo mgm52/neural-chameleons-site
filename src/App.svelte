@@ -299,10 +299,10 @@
       </p>
       <div class="flex flex-wrap justify-center gap-4 text-base md:text-lg">
         <div class="flex flex-wrap justify-center gap-2">
-          <span class="text-gray-700 font-serif font-medium">Max McGuinness<sup>1*</sup>,</span>
-          <span class="text-gray-700 font-serif font-medium">Alex Serrano<sup>1,2*</sup>,</span>
-          <span class="text-gray-700 font-serif font-medium">Luke Bailey<sup>3†</sup>,</span>
-          <span class="text-gray-700 font-serif font-medium">Scott Emmons<sup>1†</sup></span>
+          <span class="text-gray-700 font-serif font-medium"><a href="https://max.rip/" target="_blank" rel="noopener noreferrer">Max McGuinness</a><sup>1*</sup>,</span>
+          <span class="text-gray-700 font-serif font-medium"><a href="https://alexserrano.org/" target="_blank" rel="noopener noreferrer">Alex Serrano</a><sup>1,2*</sup>,</span>
+          <span class="text-gray-700 font-serif font-medium"><a href="https://lukebailey181.github.io/" target="_blank" rel="noopener noreferrer">Luke Bailey</a><sup>3†</sup>,</span>
+          <span class="text-gray-700 font-serif font-medium"><a href="https://www.scottemmons.com/" target="_blank" rel="noopener noreferrer">Scott Emmons</a><sup>1†</sup></span>
         </div>
       </div>
       <div class="text-center mt-2 text-sm text-gray-500 font-serif">
