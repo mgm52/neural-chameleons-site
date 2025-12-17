@@ -375,7 +375,7 @@
           </a>
         </h2>
         <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-8">
-          We show that language models can learn a general skill to evade activation monitors, with 0-shot transfer to unseen deception and harmfulness monitors from the literature, with minimal effect on model capabilities.
+          We show that language models can learn a general skill to evade activation monitors, with 0-shot transfer to unseen deception and harmfulness monitors from the literature, with only modest effect on model capabilities.
         </p>
         <p class="text-base md:text-lg font-serif leading-relaxed text-gray-800 mb-8">
           We call these <strong>"Neural Chameleons"</strong>.
@@ -500,7 +500,7 @@
         <figure class="mb-8">
           <img src="/figures/evasion_results.png" alt="Evasion results across models" class="w-full h-auto rounded-lg border border-gray-200" />
           <figcaption class="mt-3 text-sm font-serif text-gray-600 text-center">
-            <strong>Figure 2:</strong> Evasion of unseen monitors across four LLMs, with minimal capability degradation.
+            <strong>Figure 2:</strong> Evasion of unseen monitors across four LLMs, with low capability degradation.
           </figcaption>
         </figure>
 
