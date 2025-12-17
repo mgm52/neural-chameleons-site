@@ -158,7 +158,7 @@
           </a>
           <a href="" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
             <Github class="w-4 h-4 mr-1.5" />
-            Code (WIP)
+            Code (TBA)
           </a>
         </div>
       </div>
@@ -327,7 +327,7 @@
         </a>
         <a href="" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
           <Github class="w-4 h-4 mr-1.5" />
-          Code (WIP)
+          Code (TBA)
         </a>
       </div>
     </header>
