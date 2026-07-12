@@ -156,9 +156,9 @@
             <Link2 class="w-4 h-4 mr-1.5" />
             arXiv
           </a>
-          <a href="" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+          <a href="https://github.com/mgm52/neural-chameleons" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
             <Github class="w-4 h-4 mr-1.5" />
-            Code (TBA)
+            Code
           </a>
         </div>
       </div>
@@ -325,9 +325,9 @@
           <Link2 class="w-4 h-4 mr-1.5" />
           arXiv
         </a>
-        <a href="" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+        <a href="https://github.com/mgm52/neural-chameleons" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
           <Github class="w-4 h-4 mr-1.5" />
-          Code (TBA)
+          Code
         </a>
       </div>
     </header>
@@ -654,7 +654,7 @@
       <div class="mt-8 pt-8 border-t border-gray-200">
         <div class="text-center text-sm font-serif text-gray-500">
           <p>Neural Chameleons</p>
-          <p class="mt-2">Code available at <a href="" class="text-neural-green hover:opacity-80">(coming soon)</a></p>
+          <p class="mt-2">Code available at <a href="https://github.com/mgm52/neural-chameleons" target="_blank" rel="noopener noreferrer" class="text-neural-green hover:opacity-80">github.com/mgm52/neural-chameleons</a></p>
         </div>
       </div>
     </footer>
